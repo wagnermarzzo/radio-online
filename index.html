@@ -15,10 +15,10 @@
   <section class="player">
     <h2>Ouça ao Vivo</h2>
     <audio id="radioPlayer" preload="auto">
-      <source src="http://streaming.radiorock.com.br:8000/rockfm.mp3" type="audio/mpeg">
+      <source src="http://jovempan.stream.redetv.com.br:8000/jovempan.mp3" type="audio/mpeg">
       Seu navegador não suporta o player de áudio.
     </audio>
-    <button id="playButton">▶️ Tocar Rádio</button>
+    <button id="playButton" class="fixed-play">▶️</button>
   </section>
 
   <section class="programacao">
@@ -59,22 +59,24 @@
     const player = document.getElementById('radioPlayer');
     const playButton = document.getElementById('playButton');
 
-    // Tenta tocar automaticamente
+    // Tenta autoplay (pode ser bloqueado em alguns navegadores)
     window.addEventListener('load', () => {
-      const playPromise = player.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay bloqueado, mostrar botão
-          playButton.style.display = 'inline-block';
-        });
-      }
+      player.play().catch(() => {
+        // Autoplay bloqueado, o botão fica visível
+        playButton.style.display = 'inline-block';
+      });
     });
 
-    // Botão de play manual
+    // Alterna play/pause
     playButton.addEventListener('click', () => {
-      player.play();
-      playButton.style.display = 'none';
+      if(player.paused){
+        player.play();
+        playButton.textContent = '⏸️';
+      } else {
+        player.pause();
+        playButton.textContent = '▶️';
+      }
     });
   </script>
 </body>
-  </html>
+</html>
