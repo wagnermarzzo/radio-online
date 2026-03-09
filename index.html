@@ -3,36 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rádio Online (Teste Som)</title>
+  <title>Rádio Online</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Rádio Online — Teste de Som</h1>
+    <img src="assets/logo.png" alt="Logo Rádio Online" class="logo">
+    <h1>Rádio Online</h1>
   </header>
 
-  <section class="player">
-    <h2>Ouça Agora</h2>
-    <audio id="radioPlayer" preload="auto">
-      <source src="https://ice1.somafm.com/groovesalad-128-mp3" type="audio/mpeg">
-      Seu navegador não suporta o player de áudio.
-    </audio>
-    <button id="playButton">▶️ Tocar / ⏸️ Pausar</button>
-  </section>
+  <main>
+    <section class="player-section">
+      <h2>Ouça ao Vivo</h2>
+      <audio id="radioPlayer" preload="auto">
+        <source src="https://ice1.somafm.com/groovesalad-128-mp3" type="audio/mpeg">
+        Seu navegador não suporta o player de áudio.
+      </audio>
+    </section>
+
+    <section class="programacao">
+      <h2>Programação</h2>
+      <table>
+        <tr>
+          <th>Horário</th>
+          <th>Programa</th>
+        </tr>
+        <tr>
+          <td>06:00 - 10:00</td>
+          <td>Alisson Silvaes</td>
+        </tr>
+        <tr>
+          <td>10:00 - 14:00</td>
+          <td>Locutor 2</td>
+        </tr>
+        <tr>
+          <td>14:00 - 18:00</td>
+          <td>Locutor 3</td>
+        </tr>
+        <tr>
+          <td>18:00 - 22:00</td>
+          <td>Locutor 4</td>
+        </tr>
+        <tr>
+          <td>22:00 - 06:00</td>
+          <td>Músicas e Hits</td>
+        </tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Rádio Online. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Botão fixo de play/pause -->
+  <button id="playButton" class="fixed-play">▶️</button>
 
   <script>
     const player = document.getElementById('radioPlayer');
     const playButton = document.getElementById('playButton');
 
+    // Alterna play/pause
     playButton.addEventListener('click', () => {
       if (player.paused) {
         player.play();
-        playButton.textContent = '⏸️ Pausar';
+        playButton.textContent = '⏸️';
       } else {
         player.pause();
-        playButton.textContent = '▶️ Tocar';
+        playButton.textContent = '▶️';
       }
     });
   </script>
 </body>
-</html>
+          </html>
