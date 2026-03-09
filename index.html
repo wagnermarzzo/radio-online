@@ -13,14 +13,6 @@
   </header>
 
   <main>
-    <section class="player-section">
-      <h2>Ouça ao Vivo</h2>
-      <audio id="radioPlayer" preload="auto">
-        <source src="https://ice1.somafm.com/groovesalad-128-mp3" type="audio/mpeg">
-        Seu navegador não suporta o player de áudio.
-      </audio>
-    </section>
-
     <section class="programacao">
       <h2>Programação</h2>
       <table>
@@ -28,23 +20,23 @@
           <th>Horário</th>
           <th>Programa</th>
         </tr>
-        <tr>
+        <tr class="manha">
           <td>06:00 - 10:00</td>
           <td>Alisson Silvaes</td>
         </tr>
-        <tr>
+        <tr class="manha">
           <td>10:00 - 14:00</td>
           <td>Locutor 2</td>
         </tr>
-        <tr>
+        <tr class="tarde">
           <td>14:00 - 18:00</td>
           <td>Locutor 3</td>
         </tr>
-        <tr>
+        <tr class="tarde">
           <td>18:00 - 22:00</td>
           <td>Locutor 4</td>
         </tr>
-        <tr>
+        <tr class="noite">
           <td>22:00 - 06:00</td>
           <td>Músicas e Hits</td>
         </tr>
@@ -56,23 +48,48 @@
     <p>© 2026 Rádio Online. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Botão fixo de play/pause -->
-  <button id="playButton" class="fixed-play">▶️</button>
+  <!-- Player fixo -->
+  <div class="radio-player">
+    <div id="liveProgram">Programa ao vivo</div>
+    <audio id="radioAudio" preload="auto">
+      <source src="https://ice1.somafm.com/groovesalad-128-mp3" type="audio/mpeg">
+      Seu navegador não suporta o player de áudio.
+    </audio>
+    <button id="playBtn" class="play-btn">▶️</button>
+    <span id="playingAnimation" class="playing-animation"></span>
+  </div>
 
   <script>
-    const player = document.getElementById('radioPlayer');
-    const playButton = document.getElementById('playButton');
+    const audio = document.getElementById('radioAudio');
+    const playBtn = document.getElementById('playBtn');
+    const anim = document.getElementById('playingAnimation');
+    const liveProgram = document.getElementById('liveProgram');
 
     // Alterna play/pause
-    playButton.addEventListener('click', () => {
-      if (player.paused) {
-        player.play();
-        playButton.textContent = '⏸️';
+    playBtn.addEventListener('click', () => {
+      if(audio.paused){
+        audio.play();
+        playBtn.textContent = '⏸️';
+        anim.classList.add('active');
       } else {
-        player.pause();
-        playButton.textContent = '▶️';
+        audio.pause();
+        playBtn.textContent = '▶️';
+        anim.classList.remove('active');
       }
     });
+
+    // Atualiza o programa ao vivo baseado na hora
+    function updateLiveProgram(){
+      const hour = new Date().getHours();
+      let program = '';
+      if(hour >= 6 && hour < 14) program = 'Alisson Silvaes / Locutor 2';
+      else if(hour >= 14 && hour < 22) program = 'Locutor 3 / Locutor 4';
+      else program = 'Músicas e Hits';
+      liveProgram.textContent = program;
+    }
+
+    setInterval(updateLiveProgram, 60000); // Atualiza a cada minuto
+    updateLiveProgram(); // Inicial
   </script>
 </body>
-          </html>
+</html>
