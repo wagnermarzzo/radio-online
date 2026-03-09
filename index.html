@@ -14,10 +14,11 @@
 
   <section class="player">
     <h2>Ouça ao Vivo</h2>
-    <audio controls autoplay preload="auto">
-      <source src="https://stream.rockfm.com.br/rockfm" type="audio/mpeg">
+    <audio id="radioPlayer" preload="auto">
+      <source src="http://streaming.radiorock.com.br:8000/rockfm.mp3" type="audio/mpeg">
       Seu navegador não suporta o player de áudio.
     </audio>
+    <button id="playButton">▶️ Tocar Rádio</button>
   </section>
 
   <section class="programacao">
@@ -53,5 +54,27 @@
   <footer>
     <p>© 2026 Rádio Online. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    const player = document.getElementById('radioPlayer');
+    const playButton = document.getElementById('playButton');
+
+    // Tenta tocar automaticamente
+    window.addEventListener('load', () => {
+      const playPromise = player.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay bloqueado, mostrar botão
+          playButton.style.display = 'inline-block';
+        });
+      }
+    });
+
+    // Botão de play manual
+    playButton.addEventListener('click', () => {
+      player.play();
+      playButton.style.display = 'none';
+    });
+  </script>
 </body>
-</html>
+  </html>
