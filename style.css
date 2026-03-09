@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -25,21 +26,24 @@ header .logo {
   margin-bottom: 10px;
 }
 
-.player {
-  margin: 30px auto;
+main {
   padding: 20px;
-  background-color: #222;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
 }
 
-.player audio {
+/* Player */
+.player-section {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.player-section audio {
   width: 100%;
   outline: none;
 }
 
+/* Botão fixo de play/pause */
 .fixed-play {
   position: fixed;
   bottom: 20px;
@@ -53,19 +57,20 @@ header .logo {
   color: white;
   cursor: pointer;
   box-shadow: 0 0 10px #000;
+  z-index: 1000;
 }
 
 .fixed-play:hover {
   background-color: #ff7733;
 }
 
+/* Programação */
 .programacao {
-  margin: 30px auto;
-  padding: 20px;
   background-color: #222;
+  padding: 20px;
   border-radius: 12px;
-  width: 90%;
   max-width: 600px;
+  margin: 0 auto 30px auto;
 }
 
 .programacao table {
@@ -74,7 +79,7 @@ header .logo {
 }
 
 .programacao th, .programacao td {
-  padding: 10px;
+  padding: 12px;
   border-bottom: 1px solid #333;
 }
 
@@ -86,13 +91,14 @@ header .logo {
   background-color: #333;
 }
 
+/* Footer */
 footer {
-  margin-top: 40px;
   padding: 15px;
   background-color: #1a1a1a;
   font-size: 0.9em;
 }
 
+/* Responsividade */
 @media screen and (max-width: 600px) {
   header h1 {
     font-size: 1.5em;
@@ -102,4 +108,10 @@ footer {
     font-size: 0.9em;
     padding: 8px;
   }
-}
+
+  .fixed-play {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+  }
+  }
