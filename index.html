@@ -15,7 +15,7 @@
   <section class="player">
     <h2>Ouça ao Vivo</h2>
     <audio id="radioPlayer" preload="auto">
-      <source src="http://jovempan.stream.redetv.com.br:8000/jovempan.mp3" type="audio/mpeg">
+      <source src="http://streaming.tocafm.com.br:8000/tocafm.mp3" type="audio/mpeg">
       Seu navegador não suporta o player de áudio.
     </audio>
     <button id="playButton" class="fixed-play">▶️</button>
@@ -59,15 +59,12 @@
     const player = document.getElementById('radioPlayer');
     const playButton = document.getElementById('playButton');
 
-    // Tenta autoplay (pode ser bloqueado em alguns navegadores)
     window.addEventListener('load', () => {
       player.play().catch(() => {
-        // Autoplay bloqueado, o botão fica visível
         playButton.style.display = 'inline-block';
       });
     });
 
-    // Alterna play/pause
     playButton.addEventListener('click', () => {
       if(player.paused){
         player.play();
