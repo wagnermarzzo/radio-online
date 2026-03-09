@@ -42,6 +42,22 @@ header .logo {
   outline: none;
 }
 
+#playButton {
+  display: none;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5500;
+  color: white;
+  cursor: pointer;
+}
+
+#playButton:hover {
+  background-color: #ff7733;
+}
+
 /* Programação */
 .programacao {
   margin: 30px auto;
