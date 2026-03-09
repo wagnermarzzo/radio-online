@@ -1,117 +1,69 @@
 /* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, sans-serif; background:#121212; color:#fff; text-align:center; }
+header { background:#1a1a1a; padding:20px; display:flex; flex-direction:column; align-items:center; }
+header .logo { width:120px; height:auto; margin-bottom:10px; }
+main { padding:20px; }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: #fff;
-  text-align: center;
-}
-
-header {
-  background-color: #1a1a1a;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-header .logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-main {
-  padding: 20px;
-}
-
-/* Player */
-.player-section {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-}
-
-.player-section audio {
-  width: 100%;
-  outline: none;
-}
-
-/* Botão fixo de play/pause */
-.fixed-play {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  font-size: 1.8em;
-  border: none;
-  border-radius: 50%;
-  background-color: #ff5500;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 10px #000;
-  z-index: 1000;
-}
-
-.fixed-play:hover {
-  background-color: #ff7733;
-}
-
-/* Programação */
-.programacao {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 0 auto 30px auto;
-}
-
-.programacao table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.programacao th, .programacao td {
-  padding: 12px;
-  border-bottom: 1px solid #333;
-}
-
-.programacao th {
-  background-color: #1a1a1a;
-}
-
-.programacao tr:hover {
-  background-color: #333;
-}
+/* Programação com cores por faixa */
+.programacao { background:#222; padding:20px; border-radius:12px; max-width:600px; margin:0 auto 50px auto; }
+.programacao table { width:100%; border-collapse:collapse; }
+.programacao th, .programacao td { padding:12px; border-bottom:1px solid #333; }
+.programacao th { background:#1a1a1a; }
+.programacao tr:hover { background:#333; }
+.programacao .manha { background:#2a2a44; }
+.programacao .tarde { background:#442a2a; }
+.programacao .noite { background:#2a442a; }
 
 /* Footer */
-footer {
-  padding: 15px;
-  background-color: #1a1a1a;
-  font-size: 0.9em;
+footer { padding:15px; background:#1a1a1a; font-size:0.9em; }
+
+/* Player fixo */
+.radio-player {
+  position: fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff5500;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:0 0 10px #000;
+  z-index:1000;
+}
+
+.radio-player audio { display:none; }
+
+.play-btn {
+  font-size:1.5em;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+.playing-animation {
+  width:10px;
+  height:20px;
+  display:inline-block;
+  background:#fff;
+  border-radius:3px;
+  animation: none;
+}
+
+.playing-animation.active {
+  animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+  0%{transform:scaleY(0.3);}
+  100%{transform:scaleY(1);}
 }
 
 /* Responsividade */
-@media screen and (max-width: 600px) {
-  header h1 {
-    font-size: 1.5em;
-  }
-
-  .programacao th, .programacao td {
-    font-size: 0.9em;
-    padding: 8px;
-  }
-
-  .fixed-play {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5em;
-  }
-  }
+@media screen and (max-width:600px){
+  .radio-player { bottom:15px; right:15px; padding:8px 10px; gap:5px; }
+  .play-btn { font-size:1.2em; }
+}
